@@ -17,17 +17,17 @@
 #===============================================================================
 
 from __future__ import division
-from pylab import *
-from random import gauss
+from math import pi, sin, cos, exp
+from random import gauss, randint
 
 class galaxy_generator(object):
 	def speral_galaxy(self, nStars=50000, arms=2, mAng=1, dAng=1, mDist=1, dDist=1.2, kAng=1, kDist=1, kDist1=1000000000, kDist2=.247):
 		x = []
 		y = []
 		for _ in xrange(nStars):
-			ang = (gauss(mAng, dAng) + arms ** -1) * np.pi * kAng
-			dist = (gauss(mDist, dDist + 0.2) * kDist1 / arms) + np.exp(ang * kDist2) * kDist1
-			ang += np.pi * 2 / arms * randint(arms)
+			ang = (gauss(mAng, dAng) + arms ** -1) * pi * kAng
+			dist = (gauss(mDist, dDist + 0.2) * kDist1 / arms) + exp(ang * kDist2) * kDist1
+			ang += pi * 2 / arms * randint(1, arms)
 			x.append(sin(ang) * dist)
 			y.append(cos(ang) * dist)
-		return np.array(x), np.array(y)
+		return x, y
